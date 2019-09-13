@@ -1,10 +1,8 @@
-import random
+from Person import Person
 
-class Player:
+class Player(Person):
     def __init__(self):
-        self.hand = []
-        self.displayHand = []
-        self.value = 0
+        super().__init__()
         self.money = 500.0
         self.bet = 0
     
@@ -21,29 +19,6 @@ class Player:
         except:
             print("Invalid input. Place a numerical bet.")
             self.placeBet()
-
-    def createDisplayHand(self):
-        self.displayHand = []
-        for card in self.hand:
-            self.displayHand.append(card.display)
-
-    def deal(self, deck):
-        card = random.choice(tuple(deck))
-        deck.remove(card)
-        self.hand.append(card)
-        self.calculateValue()
-        self.createDisplayHand()
-
-    def calculateValue(self):
-        self.value = 0
-        for card in self.hand:
-            self.value += card.value
-        if self.value > 21:
-            for card in self.hand:
-                if card.value == 11:
-                    card.value = 1
-                    self.calculateValue()
-                    break
 
     def decide(self, deck):
         try:

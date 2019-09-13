@@ -1,13 +1,14 @@
 import sys
 import time
 from Deck import Deck
+from Person import Person
 from Player import Player
 
 def main():
     # print intro
     printIntro()
     player = Player()
-    dealer = Player()
+    dealer = Person()
     while player.money > 0:
         time.sleep(1)
         # start new game
@@ -100,7 +101,7 @@ def playerTurn(player, deck):
             time.sleep(1)
             break
         time.sleep(1)
-        print(player.hand[-1].display)
+        print(str(player.hand[-1]))
         time.sleep(1)
         print("\n")
 
@@ -113,7 +114,7 @@ def dealerTurn(dealer, deck):
         printDealerHand(dealer)
         time.sleep(1)
         dealer.deal(deck)
-        print(dealer.hand[-1].display)
+        print(str(dealer.hand[-1]))
         time.sleep(1)
         print("\n")
 
