@@ -1,0 +1,61 @@
+import random
+
+class Player:
+    def __init__(self):
+        self.hand = []
+        self.displayHand = []
+        self.value = 0
+        self.money = 500.0
+        self.bet = 0
+    
+    def placeBet(self):
+        try:
+            bet = float(input())
+            while bet > self.money or bet <= 0:
+                if bet <= 0:
+                    print("You must bet a positive amount of money. Place a valid bet.")
+                else:
+                    print("Bet exceeds your limit of $" + str(player.money) + ". Place a lower bet.")
+                bet = float(input())
+            self.bet = bet
+        except:
+            print("Invalid input. Place a numerical bet.")
+            self.placeBet()
+
+    def createDisplayHand(self):
+        self.displayHand = []
+        for card in self.hand:
+            self.displayHand.append(card.display)
+
+    def deal(self, deck):
+        card = random.choice(tuple(deck))
+        deck.remove(card)
+        self.hand.append(card)
+        self.calculateValue()
+        self.createDisplayHand()
+
+    def calculateValue(self):
+        self.value = 0
+        for card in self.hand:
+            self.value += card.value
+        if self.value > 21:
+            for card in self.hand:
+                if card.value == 11:
+                    card.value = 1
+                    self.calculateValue()
+                    break
+
+    def decide(self, deck):
+        try:
+            decision = input().lower()
+            while decision != "deal" and decision != "stand":
+                print("Invalid move. Input either deal or stand into the terminal.")
+                decision = input().lower()
+            if decision == "deal":
+                self.deal(deck)
+            elif decision == "stand":
+                print("Player stands at " + str(self.value) + ".")
+                return "STAND"
+        except:
+            print("Invalid move. Input either deal or stand into the terminal.")
+            self.decide(deck)
