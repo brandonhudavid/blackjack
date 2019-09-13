@@ -13,5 +13,7 @@ In this variant of Blackjack, the player starts with $500 and plays against the 
 
 ### Technologies
 `random` - chooses a random Card within Deck
+
 `time` - to suspend code execution and improve user experience
+
 `sys` - to exit the game when Player has no more money
